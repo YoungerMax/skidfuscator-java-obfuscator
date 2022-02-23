@@ -56,9 +56,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.mapleir</groupId>
+            <groupId>com.github.LLVM-but-worse.maple-ir</groupId>
             <artifactId>main</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>1.0.0-SNAPSHOT-1</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/info.picocli/picocli -->
         <dependency>
