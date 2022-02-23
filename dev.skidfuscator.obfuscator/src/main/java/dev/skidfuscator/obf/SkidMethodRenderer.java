@@ -45,7 +45,7 @@ public class SkidMethodRenderer {
                 new AhegaoPass()
         };
 
-        if (Skidfuscator.preventDump) {
+        if (Skidfuscator.INSTANCE.obfuscateCommand.preventDump) {
             logger.log("[*] Passing project passes...");
             final ProjectPass projectPass  = new SuperDuperAgentPass();
             projectPass.pass(skidSession);

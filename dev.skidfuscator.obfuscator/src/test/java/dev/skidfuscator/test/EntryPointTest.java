@@ -15,9 +15,16 @@ public class EntryPointTest {
 
     @Test
     public void test2() throws Exception {
-        final String path = "src/test/resources/test.jar";
-        Bootstrapper.main(new String[]{path});
-        //Bootstrapper.main(new String[]{"C:\\Users\\sanja\\Documents\\GitHub\\SkidfuscatorV2\\dev.skidfuscator.obfuscator\\src\\test\\resources\\test.jar"});
+        Bootstrapper.main(new String[] {
+                "--input-file", "src/test/resources/test.jar",
+                "--output-file", "output.jar"
+        });
     }
 
+    @Test
+    public void oldCliTest() {
+        Bootstrapper.main(new String[] {
+                "src/test/resources/test.jar"
+        });
+    }
 }

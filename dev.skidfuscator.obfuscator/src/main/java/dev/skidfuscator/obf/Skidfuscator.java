@@ -1,5 +1,6 @@
 package dev.skidfuscator.obf;
 
+import dev.skidfuscator.obf.command.ObfuscateCommand;
 import dev.skidfuscator.obf.directory.SkiddedDirectory;
 import dev.skidfuscator.obf.init.DefaultInitHandler;
 import dev.skidfuscator.obf.init.SkidSession;
@@ -20,40 +21,14 @@ import java.util.Date;
 public class Skidfuscator {
     public static Skidfuscator INSTANCE;
 
-    private String[] args;
+    public final ObfuscateCommand obfuscateCommand;
 
-
-    public static Skidfuscator init(String[] args) {
-        return new Skidfuscator(args);
-    }
-
-    public Skidfuscator(String[] args) {
+    public Skidfuscator(ObfuscateCommand obfuscateCommand) {
         INSTANCE = this;
-        this.args = args;
-        this.init();
+        this.obfuscateCommand = obfuscateCommand;
     }
-
-    public Skidfuscator() {
-        this(new String[0]);
-    }
-
-    // Temp workaround
-    public static boolean preventDump;
 
     public void init() {
-        if (args.length < 1) {
-            System.out.println("Not valid command bro");
-            System.exit(1);
-            return;
-        }
-
-        // Todo: Actually add an CLI
-        if (args.length > 1) {
-            if (args[1].equalsIgnoreCase("--antidump")) {
-                preventDump = true;
-            }
-        }
-
         final String[] logo = new String[] {
                 "",
                 "  /$$$$$$  /$$       /$$       /$$  /$$$$$$                                           /$$",
@@ -75,16 +50,14 @@ public class Skidfuscator {
         }
 
 
-        final File file = new File(args[0]);
-        start(file);
+        start(this.obfuscateCommand);
     }
 
-    public static File start(final File file) {
+    public static File start(ObfuscateCommand obfuscateCommand) {
         final SkiddedDirectory directory = new SkiddedDirectory(null);
         directory.init();
 
-        final File out = new File(file.getPath() + "-out.jar");
-        final SkidSession session = new DefaultInitHandler().init(file, out);
+        final SkidSession session = new DefaultInitHandler().init(obfuscateCommand.inputFile, obfuscateCommand.outputFile);
         try {
             MapleJarUtil.dumpJar(session.getClassSource(), session.getJarDownloader(), new PassGroup("Output"),
                     session.getOutputFile().getPath());
@@ -92,6 +65,15 @@ public class Skidfuscator {
             e.printStackTrace();
         }
 
-        return out;
+        return obfuscateCommand.outputFile;
+    }
+
+    // for discord bot
+    public static File start(File inputFile) {
+        ObfuscateCommand command = new ObfuscateCommand();
+        command.inputFile = inputFile;
+        command.call();
+
+        return command.outputFile;
     }
 }
