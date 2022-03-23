@@ -1,10 +1,12 @@
 package dev.skidfuscator.obf.command;
 
 import dev.skidfuscator.obf.Skidfuscator;
+import dev.skidfuscator.obf.transform.impl.kappa.AhegaoPass;
 import picocli.CommandLine;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.util.concurrent.Callable;
 
@@ -25,6 +27,15 @@ public class ObfuscateCommand implements Callable<Integer> {
 
     @CommandLine.Option(names = {"--antidump"}, description = "Prevents dump", defaultValue = "false", type = Boolean.class)
     public boolean preventDump = false;
+
+    @CommandLine.Option(names = {"--obfuscate-names-for-injected-content"}, description = "Obfuscates string encryption method names and ahegao constants", defaultValue = "false", type = Boolean.class)
+    public boolean obfInjected = false;
+
+    @CommandLine.Option(names = {"--obfuscate-names-dictionary"}, description = "Dictionary for names of injected content (you must enable --obfuscate-names-for-injected-content first)", defaultValue = "Oo", type = String.class)
+    public String obfDictionary = "Oo";
+
+    @CommandLine.Option(names = {"--obfuscate-names-length"}, description = "Length of the names of injected content (you must enable --obfuscate-names-for-injected-content first)", defaultValue = "12", type = Integer.class)
+    public int obfLength = 12;
 
     @Override
     public Integer call() {

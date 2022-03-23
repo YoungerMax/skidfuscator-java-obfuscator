@@ -86,6 +86,8 @@ public class DefaultInitHandler implements InitHandler {
             } catch (Exception ex){
                 ex.printStackTrace();
             }
+
+            // [fatal] No compatible exception at
             (new ControlFlowGraphDumper(cfg, mn)).dump();
         }
 

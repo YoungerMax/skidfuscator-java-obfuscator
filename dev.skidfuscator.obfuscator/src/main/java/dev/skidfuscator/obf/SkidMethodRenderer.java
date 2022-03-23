@@ -178,12 +178,12 @@ public class SkidMethodRenderer {
         logger.post("[*] Gen3 Flow... Beginning obfuscation...");
         final FlowPass[] flowPasses = new FlowPass[]{
                 new NumberMutatorPass(),
-                new SwitchMutatorPass(),
+//                new SwitchMutatorPass(),
                 //new FakeTryCatchFlowPass(),
                 //new ConditionV2MutatorPass(),
-                new ConditionMutatorPass(),
-                new FakeExceptionJumpFlowPass(),
-                new FakeJumpFlowPass(),
+                // new ConditionMutatorPass(),
+//                 new FakeExceptionJumpFlowPass(),
+//                new FakeJumpFlowPass(),
                 new SeedFlowPass(),
                 new SimpleXorCipher()
         };

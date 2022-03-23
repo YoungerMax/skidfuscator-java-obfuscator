@@ -1,5 +1,7 @@
 package dev.skidfuscator.obf.utils.generate;
 
+import dev.skidfuscator.obf.Skidfuscator;
+import dev.skidfuscator.obf.utils.MiscUtils;
 import org.objectweb.asm.Label;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
@@ -10,7 +12,7 @@ import java.nio.charset.StandardCharsets;
 import static org.objectweb.asm.Opcodes.*;
 
 public class XorEncryption {
-    public static final String NAME = "doTheSkiddusFunnius$123";
+    public static final String NAME = MiscUtils.getObfuscatedString(Skidfuscator.INSTANCE.obfuscateCommand, "doTheSkiddusFunnius$123");
 
     public static String factor(final String string, int key) {
         final byte[] encrypted = string.getBytes();
@@ -84,11 +86,11 @@ public class XorEncryption {
         methodVisitor.visitInsn(ARETURN);
         Label label7 = new Label();
         methodVisitor.visitLabel(label7);
-        methodVisitor.visitLocalVariable("i", "I", null, label3, label4, 4);
-        methodVisitor.visitLocalVariable("string", "Ljava/lang/String;", null, label0, label7, 0);
-        methodVisitor.visitLocalVariable("key", "I", null, label0, label7, 1);
-        methodVisitor.visitLocalVariable("encrypted", "[B", null, label1, label7, 2);
-        methodVisitor.visitLocalVariable("modulo", "[B", null, label2, label7, 3);
+        methodVisitor.visitLocalVariable(MiscUtils.getObfuscatedString(Skidfuscator.INSTANCE.obfuscateCommand, "i"), "I", null, label3, label4, 4);
+        methodVisitor.visitLocalVariable(MiscUtils.getObfuscatedString(Skidfuscator.INSTANCE.obfuscateCommand, "string"), "Ljava/lang/String;", null, label0, label7, 0);
+        methodVisitor.visitLocalVariable(MiscUtils.getObfuscatedString(Skidfuscator.INSTANCE.obfuscateCommand, "key"), "I", null, label0, label7, 1);
+        methodVisitor.visitLocalVariable(MiscUtils.getObfuscatedString(Skidfuscator.INSTANCE.obfuscateCommand, "encrypted"), "[B", null, label1, label7, 2);
+        methodVisitor.visitLocalVariable(MiscUtils.getObfuscatedString(Skidfuscator.INSTANCE.obfuscateCommand, "modulo"), "[B", null, label2, label7, 3);
         methodVisitor.visitMaxs(6, 5);
         methodVisitor.visitEnd();
     }

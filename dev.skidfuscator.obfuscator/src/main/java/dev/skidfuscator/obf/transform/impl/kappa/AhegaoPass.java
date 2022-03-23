@@ -1,7 +1,9 @@
 package dev.skidfuscator.obf.transform.impl.kappa;
 
+import dev.skidfuscator.obf.Skidfuscator;
 import dev.skidfuscator.obf.init.SkidSession;
 import dev.skidfuscator.obf.transform.impl.ProjectPass;
+import dev.skidfuscator.obf.utils.MiscUtils;
 import dev.skidfuscator.obf.utils.RandomUtil;
 import org.mapleir.asm.ClassNode;
 import org.mapleir.asm.FieldNode;
@@ -42,7 +44,7 @@ public class AhegaoPass implements ProjectPass {
 
             final org.objectweb.asm.tree.FieldNode fieldNode = new org.objectweb.asm.tree.FieldNode(
                     Opcodes.ACC_PRIVATE | Opcodes.ACC_STATIC,
-                    "nothing_to_see_here",
+                    MiscUtils.getObfuscatedString(Skidfuscator.INSTANCE.obfuscateCommand, "nothing_to_see_here"),
                     "[Ljava/lang/String;",
                     null,
                     null
